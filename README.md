@@ -33,6 +33,9 @@ $$M=\begin{pmatrix}
  b & f\\
  \end{pmatrix}$$
  
- Die Variabeln $x$ und $y$ werden dann mit der Determinantenmethode berechnet.
+ Die Variabeln $x$ und $y$ werden dann durch die Division von Determinanten berechnet.
  $$x=\frac{det(A_1)}{det(A)}$$
  $$y=\frac{det(A_2)}{det(A)}$$
+
+## solve_gauss
+Löst Lineare Gleichungssysteme
