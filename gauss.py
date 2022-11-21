@@ -1,5 +1,4 @@
 import numpy as np
-import sys
 
 class notsolvable(Exception):
     def __init__(self):
@@ -16,25 +15,31 @@ def check_matrix(m:np.ndarray)->int:
 
 def adjust_matrix(m:np.ndarray)->np.ndarray:
     num_zeros:int=check_matrix(m)
-    for x in range(m.shape[1]-1):
-        if m[x,x]==0:
-            for y,n in enumerate(m[:,x]):
-                temp_m:np.ndarray=m
-                if n!=0:
-                    temp_m[[x,y]]=temp_m[[y,x]]
-                    if check_matrix(temp_m)<num_zeros:
-                       m[[x,y+x]]=m[[y+x,x]]
-                       num_zeros=check_matrix(m)
-                       break
-                    else:
-                        continue
-    if check_matrix(m)!=0:
-        raise notsolvable()
-    return m
+    if num_zeros==0:
+        return m
+    else:
+        for x in range(m.shape[1]-1):
+            if m[x,x]==0:
+                for y,n in enumerate(m[:,x]):
+                    temp_m:np.ndarray=m
+                    if n!=0:
+                        temp_m[[x,y]]=temp_m[[y,x]]
+                        if check_matrix(temp_m)<num_zeros:
+                            m[[x,y+x]]=m[[y+x,x]]
+                            num_zeros=check_matrix(m)
+                            break
+                        else:
+                            continue
+
+        if check_matrix(m)!=0:
+            print(m)
+            raise notsolvable()
+        return m
 
 
 def solve_gauss(m:np.ndarray)->list:
     for x in range(0,m.shape[1]-1):
+        m=adjust_matrix(m)
         m[x,:]=m[x,:]/m[x,x]
         
         for y in range(0,m.shape[0]):
@@ -45,12 +50,8 @@ def solve_gauss(m:np.ndarray)->list:
 
 
 if __name__ == "__main__":
-    matrix:np.ndarray=np.array([[0,1,0,2],[0,0,1,3],[1,0,0,1]],dtype=np.float128)
-    if check_matrix(matrix)>0:
-        matrix=adjust_matrix(matrix)
+    matrix:np.ndarray=np.array([[-1,2,-2,-1,-7],[2,1,3,-1,6],[1,-1,-1,1,-4],[1,-1,2,-2,-1]],dtype=np.float128)
+    results:list=solve_gauss(matrix)
 
-        print(matrix)
-        results:list=solve_gauss(matrix)
-
-        for i,result in enumerate(results):
-            print(f"{i+1}. Variable: {result}")
+    for i,result in enumerate(results):
+        print(f"{i+1}. Variable: {result}")
