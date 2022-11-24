@@ -24,8 +24,8 @@ def adjust_matrix(m:np.ndarray)->np.ndarray:
                     temp_m:np.ndarray=m
                     if n!=0:
                         temp_m[[x,y]]=temp_m[[y,x]]
-                        if check_matrix(temp_m)<num_zeros:
-                            m[[x,y+x]]=m[[y+x,x]]
+                        if check_matrix(temp_m)<=num_zeros:
+                            m=temp_m
                             num_zeros=check_matrix(m)
                             break
                         else:
@@ -50,8 +50,14 @@ def solve_gauss(m:np.ndarray)->list:
 
 
 if __name__ == "__main__":
-    matrix:np.ndarray=np.array([[-1,2,-2,-1,-7],[2,1,3,-1,6],[1,-1,-1,1,-4],[1,-1,2,-2,-1]],dtype=np.float128)
-    results:list=solve_gauss(matrix)
+    matrix:np.ndarray=np.array([[1,0,1],[0,1,2],[1,1,3]],dtype=np.float128)
+    
+    try:
+        results:list=solve_gauss(matrix)
+    except notsolvable as exc:
+        print(exc)
+        exit(-1)
 
+        
     for i,result in enumerate(results):
         print(f"{i+1}. Variable: {result}")
