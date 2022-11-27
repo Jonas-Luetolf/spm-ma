@@ -38,4 +38,12 @@ $$M=\begin{pmatrix}
  $$y=\frac{det(A_2)}{det(A)}$$
 
 ## solve_gauss
-Löst Lineare Gleichungssysteme
+Löst Lineare Gleichungssysteme mit dem Gaussalgorithmus.
+Beim Gaussalgorithmus wird die Matrix in diese Form gebracht:
+$$
+M=\{pmatrix}
+\end{pmatrix}
+$$
+
+## solve_simplex
+Löst Lineare Maximierungsprobleme mit dem Simplexalgorithmus.
