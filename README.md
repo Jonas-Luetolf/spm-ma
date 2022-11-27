@@ -40,10 +40,22 @@ $$M=\begin{pmatrix}
 ## solve_gauss
 Löst Lineare Gleichungssysteme mit dem Gaussalgorithmus.
 Beim Gaussalgorithmus wird die Matrix in diese Form gebracht:
-$$
-M=\{pmatrix}
-\end{pmatrix}
-$$
+
+$$M=\begin{pmatrix}
+ 1 & 0 & \dots & 0  & a_1\\
+ 0 & 1 & \dots & 0 & a_2\\
+ \vdots & \vdots &  \ddots  & \vdots & \vdots \\
+ 0 & 0 & \dots & 1 & a_n\\
+ \end{pmatrix}$$
+ 
+Die Lösungen der Variablen sind dann:
+
+$$ \mathbb{L}=\begin{pmatrix}
+a_1\\
+\vdots\\
+a_n\\
+\end{pmatrix}$$
+
 
 ## solve_simplex
 Löst Lineare Maximierungsprobleme mit dem Simplexalgorithmus.
